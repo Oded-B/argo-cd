@@ -110,6 +110,8 @@ data:
     jsonPointers:
     - /spec/replicas
 ```
+!!! note
+    The two configuration keys in the example above(`managedFieldsManagers` and `jsonPointers`) are evaluated independently as if an "OR" boolean operators is used between them. This means that in this case ArgoCD will ignore diff in **all** fields managed by `kube-controller-manager` and all changes to `/spec/replicas` **regardless of the field manager**.
 
 The `status` field of `CustomResourceDefinitions` is often stored in Git/Helm manifest and should be ignored during diffing. The `ignoreResourceStatusField` setting simplifies
 handling that edge case:
